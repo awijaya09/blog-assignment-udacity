@@ -1,12 +1,12 @@
-# Boiler Plate code for personal React App
-The project is a basic setup I used when learning react
+# Blog Assignment for Udacity React Nanodegree
+The project is used to fullfil the requirements for React Nanodegree. This blog uses ReactJS & Bootstrap
 
-## I used react-create-app to get started, cleaned up the code a little bit and added bootstrap in the main index.html 
-
-### Installing
-- Clone the project
-- Run npm install
-- Add dependencies using npm install --save .....
+### Libraries Used
+- Redux ( App State Container )
+- Redux Promise ( Handling promise on data fetch )
+- React-Redux (Connecting React & Redux )
+- Axios ( Async Networking Code )
+- React-Router ( Handling routing on React )
 
 ## Authors
 * **Andree Wijaya**
