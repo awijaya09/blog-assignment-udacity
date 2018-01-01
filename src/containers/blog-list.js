@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchBlogPosts } from '../actions/index';
 import Timestamp from 'react-timestamp';
+import _ from 'lodash';
 
 class BlogList extends Component {
 
@@ -10,22 +11,28 @@ class BlogList extends Component {
         this.props.fetchBlogPosts();
     }
 
-    renderBlogPost(postData) {
-        if(postData) {
+    renderBlogPost() {
+        return _.map(this.props.posts, postData => {
+            console.log(postData)
+            if(!postData.deleted) {
                 return (
                     <div className="blog-post" key={ postData.id }>
                         <h3 className="blog-post-title">{ postData.title }</h3>
-                        <p className="blog-post-meta"><strong><Timestamp time={ postData.timestamp } format='full' /></strong> by <a href="/">{ postData.author }</a></p>
+                        <p className="blog-post-meta">
+                            <strong><Timestamp time={ postData.timestamp } format='full' /></strong> by <a href="/">{ postData.author }</a></p>
                         <p> { postData.body } </p>
                     </div>
                 ); 
-        }
-        return null;
+            } else {
+                return null;    
+            }
+        });
+        
     }
     render() {
         return (
             <div className="col-sm-8 blog-main">
-                { this.props.posts.map(this.renderBlogPost) }
+                { this.renderBlogPost() }
             </div>
             
         )
