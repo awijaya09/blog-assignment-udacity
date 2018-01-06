@@ -31,8 +31,16 @@ class BlogList extends Component {
     }
     render() {
         return (
-            <div className="col-sm-8 blog-main">
-                { this.renderBlogPost() }
+            <div className="row">
+                <div className="blog-header">
+                        <div className="container">
+                        <h1 className="blog-title">The React Blog for Udacity</h1>
+                        <p className="lead blog-description">Built with ReactJS & Bootstrap.</p>
+                        </div>
+                </div>
+                <div className="col-sm-8 blog-main">
+                    { this.renderBlogPost() }
+                </div>
             </div>
             
         )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MenuItem from './MenuItem';
 import '../styles/style.css';
 
 class HeaderMenu extends Component {
@@ -8,15 +9,9 @@ class HeaderMenu extends Component {
                 <div className="blog-masthead">
                     <div className="container">
                     <nav className="nav">
-                        <a className="nav-link active" href="/">Home</a>
-                        <a className="nav-link" href="/hello">Hello</a>
+                        <MenuItem path="/" title="Home" />
+                        <MenuItem path="/post/new" title="Create New Post" />
                     </nav>
-                    </div>
-                </div>
-                <div className="blog-header">
-                    <div className="container">
-                    <h1 className="blog-title">The React Blog for Udacity</h1>
-                    <p className="lead blog-description">Built with ReactJS & Bootstrap.</p>
                     </div>
                 </div>
             </div>
