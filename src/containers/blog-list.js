@@ -16,12 +16,17 @@ class BlogList extends Component {
             console.log(postData)
             if(!postData.deleted) {
                 return (
-                    <div className="blog-post" key={ postData.id }>
-                        <h3 className="blog-post-title">{ postData.title }</h3>
-                        <p className="blog-post-meta">
-                            <strong><Timestamp time={ postData.timestamp } format='full' /></strong> by <a href="/">{ postData.author }</a></p>
-                        <p> { postData.body } </p>
-                    </div>
+                        <div className="card mb-3" key={ postData.id }>
+                            <div className="card-body" >
+                                <h3 className="card-title">{ postData.title }</h3>
+                                <p className="blog-post-meta">
+                                    <strong><Timestamp time={ postData.timestamp } format='full' /></strong> by <a href="/">{ postData.author }</a></p>
+                                <p className="card-text"> { postData.body } </p>
+                                <a href="#" className="card-link">Like</a>
+                                <a href="#" className="card-link">Comment</a>
+                            </div>
+                        </div>
+                    
                 ); 
             } else {
                 return null;    

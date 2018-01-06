@@ -8,10 +8,10 @@ class HeaderMenu extends Component {
             <div>
                 <div className="blog-masthead">
                     <div className="container">
-                    <nav className="nav">
-                        <MenuItem path="/" title="Home" />
-                        <MenuItem path="/post/new" title="Create New Post" />
-                    </nav>
+                        <nav className="nav">
+                            <MenuItem path="/" title="Home" />
+                            <MenuItem path="/post/new" title="Create New Post" />
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,6 @@ class MenuItem extends Component {
     }
 
     toggleActive() {
-        const currentState = this.state.active;
         this.setState( {
             active: true
         });
