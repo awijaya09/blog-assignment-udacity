@@ -15,14 +15,18 @@ import registerServiceWorker from './registerServiceWorker';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-ReactDOM.render(<HeaderMenu />, document.getElementById('header'));
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
-            <Switch>
-                <Route path="/post/new" component={PostNew} />
-                <Route path="/" component={BlogList} />
-            </Switch>
+            <div>
+                <HeaderMenu />
+                <div className="container">
+                    <Switch>
+                        <Route path="/post/new" component={PostNew} />
+                        <Route path="/" component={BlogList} />
+                    </Switch>
+                </div>
+            </div>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();
