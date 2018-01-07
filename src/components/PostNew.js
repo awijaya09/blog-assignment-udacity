@@ -3,16 +3,57 @@ import { Field, reduxForm } from 'redux-form';
 
 class PostNew extends Component {
 
-    renderTitle(field) {
+    constructor(props) {
+        super(props);
+        this.renderField = this.renderField.bind(this);
+    }
+
+    showInput(field) {
+        return(
+            <input 
+                type="text"
+                id={field.id}
+                className="form-control"
+                placeholder={field.placeholder}
+                {...field.input}
+            />
+        )
+    }
+
+    showOption(field) {
         return (
-            <div className="col-sm-10">
-                <input 
-                    type="text"
-                    id="postTitle"
-                    class="form-control"
-                    placeholder="Enter the Post Title"
-                    {...field.input}
-                />
+            <select 
+                id={field.id}
+                className="form-control"
+                {...field.input}
+            >
+                <option>react</option>
+                <option>redux</option>
+                <option>udacity</option>
+            </select>
+        )
+    }
+
+    showTextarea(field) {
+        return (
+            <textarea 
+                id={field.id}
+                className="form-control"
+                {...field.input}
+            />
+        )
+       
+    }
+
+    renderField(field) {
+        return (
+            <div className="form-group row">
+                <label htmlFor={field.id} className="col-sm-2 col-form-label">{field.label}</label>
+                <div className="col-sm-10">
+                    {field.id === "postTitle" ? this.showInput(field) : null}
+                    {field.id === "postCat" ? this.showOption(field) : null}
+                    {field.id === "postBody" ? this.showTextarea(field) : null}
+                </div>
             </div>
         )
     }
@@ -27,13 +68,27 @@ class PostNew extends Component {
                 </div>
                 <div className="col-sm-8">
                     <form>
-                        <div className="form-group row">
-                        <label htmlFor="postTitle" className="col-sm-2 col-form-label">Title</label>
-                        <Field
-                            name="postTitle"
-                            component={this.renderTitle}
-                        />
-                        </div>
+                            <Field
+                                label="Title"
+                                placeholder="Enter the post title"
+                                id="postTitle"
+                                name="postTitle"
+                                component={this.renderField}
+                            />
+                            <Field
+                                label="Category"
+                                placeholder="Choose a category"
+                                id="postCat"
+                                name="postCat"
+                                component={this.renderField}
+                            />
+                            <Field
+                                label="Content"
+                                id="postBody"
+                                name="postBody"
+                                component={this.renderField}
+                            />
+                        
                     </form>
                 </div>
             </div>
