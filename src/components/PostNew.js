@@ -53,12 +53,18 @@ class PostNew extends Component {
                     {field.id === "postTitle" ? this.showInput(field) : null}
                     {field.id === "postCat" ? this.showOption(field) : null}
                     {field.id === "postBody" ? this.showTextarea(field) : null}
+                    {field.meta.error}
                 </div>
             </div>
         )
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render() {
+        const { handleSubmit } = this.props
         return (
             <div className="row">
                 <div className="blog-header">
@@ -67,28 +73,34 @@ class PostNew extends Component {
                         </div>
                 </div>
                 <div className="col-sm-8">
-                    <form>
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                             <Field
                                 label="Title"
                                 placeholder="Enter the post title"
                                 id="postTitle"
-                                name="postTitle"
+                                name="title"
                                 component={this.renderField}
                             />
                             <Field
                                 label="Category"
                                 placeholder="Choose a category"
                                 id="postCat"
-                                name="postCat"
+                                name="category"
                                 component={this.renderField}
                             />
                             <Field
                                 label="Content"
                                 id="postBody"
-                                name="postBody"
+                                name="body"
                                 component={this.renderField}
                             />
-                        
+                            <div className="form-group row">
+                                <label htmlFor="buttonSubmit" className="col-sm-2 col-form-label"></label>
+                                <div className="col-sm-10">
+                                    <button id="buttonSubmit" type="submit" className="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            
                     </form>
                 </div>
             </div>
@@ -96,6 +108,18 @@ class PostNew extends Component {
     }
 }
 
+function validate(values) {
+    // The values comes from the fields in the redux form
+    const errors = {};
+
+    if(!values.title || values.title.length < 5) {
+        errors.title = "Enter a title with at least 5 characters!";
+    }
+    // If errors is empty, the form is good to go
+    return errors;
+}
+
 export default reduxForm({
+    validate,
     form: 'NewPostForm',
 })(PostNew);
