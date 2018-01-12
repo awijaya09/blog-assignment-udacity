@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 class PostNew extends Component {
 
@@ -9,17 +10,33 @@ class PostNew extends Component {
     }
 
     showInput(field) {
+        const classString = `form-control ${field.meta.touched && field.meta.error ? 'is-invalid' : '' }`;
         return(
             <input 
                 type="text"
                 id={field.id}
-                className="form-control"
+                className={classString}
                 placeholder={field.placeholder}
+                value={field.value}
                 {...field.input}
             />
         )
     }
 
+    showTimestamp(field) {
+        const time = Date.now();
+        return (
+            <input 
+                type="text"
+                id={field.id}
+                className="form-control"
+                value={time}
+                disabled
+                {...field.input}
+            />
+        )
+        
+    }
     showOption(field) {
         return (
             <select 
@@ -47,13 +64,17 @@ class PostNew extends Component {
 
     renderField(field) {
         return (
-            <div className="form-group row">
+            <div className="form-group row  has-danger">
                 <label htmlFor={field.id} className="col-sm-2 col-form-label">{field.label}</label>
                 <div className="col-sm-10">
                     {field.id === "postTitle" ? this.showInput(field) : null}
+                    {field.id === "postAuthor" ? this.showInput(field): null}
                     {field.id === "postCat" ? this.showOption(field) : null}
                     {field.id === "postBody" ? this.showTextarea(field) : null}
-                    {field.meta.error}
+                    {field.id === "postTime" ? this.showTimestamp(field) : null}
+                    <div className="invalid-feedback">
+                        {field.meta.touched ? field.meta.error : ''}
+                    </div>
                 </div>
             </div>
         )
@@ -82,6 +103,13 @@ class PostNew extends Component {
                                 component={this.renderField}
                             />
                             <Field
+                                label="Author"
+                                placeholder="Author name"
+                                id="postAuthor"
+                                name="author"
+                                component={this.renderField}
+                            />
+                            <Field
                                 label="Category"
                                 placeholder="Choose a category"
                                 id="postCat"
@@ -94,10 +122,17 @@ class PostNew extends Component {
                                 name="body"
                                 component={this.renderField}
                             />
+                            <Field
+                                label="Timestamp"
+                                id="postTime"
+                                name="time"
+                                component={this.renderField}
+                            />
                             <div className="form-group row">
                                 <label htmlFor="buttonSubmit" className="col-sm-2 col-form-label"></label>
                                 <div className="col-sm-10">
                                     <button id="buttonSubmit" type="submit" className="btn btn-primary">Submit</button>
+                                    <Link to="/" className="btn btn-danger">Cancel</Link>
                                 </div>
                             </div>
                             

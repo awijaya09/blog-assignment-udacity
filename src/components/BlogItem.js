@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import Timestamp from 'react-timestamp';
 
 class BlogItem extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
+   
     render() {
         const postData = this.props.post
         return (

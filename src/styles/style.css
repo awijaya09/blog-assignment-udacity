@@ -29,6 +29,10 @@
   /*
    * Override Bootstrap's default container.
    */
+
+  form .btn-danger {
+    margin-left:5px;
+  }
   .container {
     max-width: 60rem;
   }
