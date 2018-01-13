@@ -22,8 +22,8 @@ export default class FormField extends Component {
                 type="text"
                 id={field.id}
                 className="form-control"
-                value={field.defaultValue}
-                disabled
+                value={field.value}
+                {...field.input}
             />
         )
     }

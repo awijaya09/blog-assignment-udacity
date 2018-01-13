@@ -19,11 +19,12 @@ class PostNew extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+        this.props.createNewPost(values);
     }
 
     render() {
         const { handleSubmit } = this.props
+        console.log(Date.now())
         return (
             <div className="row">
                 <div className="blog-header">

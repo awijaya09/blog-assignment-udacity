@@ -13,7 +13,7 @@ class BlogItem extends Component {
                         <h3 className="card-title">{ postData.title }</h3>
                         <p className="blog-post-meta">
                             <strong>
-                                <Timestamp time={ postData.timestamp } format='full' />
+                                <Timestamp time={ postData.timestamp/1000} format='full' />
                             </strong> by <Link to="/">{ postData.author }</Link></p>
                             <p className="card-text"> { postData.body } </p>
                             <p> #{postData.category}</p>
