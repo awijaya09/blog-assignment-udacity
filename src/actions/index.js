@@ -19,7 +19,7 @@ export function fetchBlogPosts() {
 }
 
 export function createNewPost(values) {
-    const post_url = '';
+    const post_url = BLOG_REQUEST_URL + 'posts';
     const request = axios.post(post_url, values );
 
     return {
