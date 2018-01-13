@@ -16,17 +16,6 @@ export default class FormField extends Component {
             />
         )
     }
-    showHiddenField(field) {
-        return(
-            <input 
-                type="text"
-                id={field.id}
-                className="form-control"
-                value={field.value}
-                {...field.input}
-            />
-        )
-    }
     showOption(field) {
         return (
             <select 
@@ -62,8 +51,6 @@ export default class FormField extends Component {
                 {field.id === "postAuthor" ? this.showInput(field): null}
                 {field.id === "postCat" ? this.showOption(field) : null}
                 {field.id === "postBody" ? this.showTextarea(field) : null}
-                {field.id === "timestamp" ? this.showHiddenField(field) : null}
-                {field.id === "udid" ? this.showHiddenField(field) : null}
                 <div className="invalid-feedback">
                     {field.meta.touched ? field.meta.error : ''}
                 </div>

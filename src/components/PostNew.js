@@ -19,12 +19,13 @@ class PostNew extends Component {
     }
 
     onSubmit(values) {
+        values['timestamp'] = Date.now();
+        values['udid'] = Date.now();
         this.props.createNewPost(values);
     }
 
     render() {
         const { handleSubmit } = this.props
-        console.log(Date.now())
         return (
             <div className="row">
                 <div className="blog-header">
@@ -60,18 +61,6 @@ class PostNew extends Component {
                                 label="Content"
                                 id="postBody"
                                 name="body"
-                                component={this.renderField}
-                            />
-                            <Field
-                                id="timestamp"
-                                name="timestamp"
-                                defaultValue={Date.now()}
-                                component={this.renderField}
-                            />
-                            <Field
-                                id="udid"
-                                name="udid"
-                                defaultValue={Date.now()}
                                 component={this.renderField}
                             />
                             
