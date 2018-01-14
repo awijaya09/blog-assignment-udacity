@@ -21,7 +21,10 @@ class PostNew extends Component {
     onSubmit(values) {
         values['timestamp'] = Date.now();
         values['udid'] = Date.now();
-        this.props.createNewPost(values);
+
+        this.props.createNewPost(values, () => {
+            this.props.history.push('/')
+        });
     }
 
     render() {
