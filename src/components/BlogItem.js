@@ -7,16 +7,17 @@ class BlogItem extends Component {
     render() {
         const postData = this.props.post
         return (
-            <div className="card mb-3" key={ postData.id }>
+            <div className="card mb-3">
                 <div className="card-body" >
                     <div className="col-sm-12">
-                        <h3 className="card-title">{ postData.title }</h3>
+                        <Link to={`posts/${postData.id}`}><h3 className="card-title">{ postData.title }</h3></Link>
                         <p className="blog-post-meta">
                             <strong>
                                 <Timestamp time={ postData.timestamp/1000} format='full' />
-                            </strong> by <Link to="/">{ postData.author }</Link></p>
-                            <p className="card-text"> { postData.body } </p>
-                            <p> #{postData.category}</p>
+                            </strong> by <Link to="/">{ postData.author }</Link>
+                        </p>
+                        <p className="card-text"> { postData.body } </p>
+                        <p> #{postData.category}</p>
                     </div>
                 </div>
                 <ul className="list-group list-group-flush">

@@ -14,8 +14,9 @@ class BlogList extends Component {
     renderBlogPost() {
         return _.map(this.props.posts, postData => {
             if(!postData.deleted) {
+                console.log(postData.id);
                 return (
-                    <BlogItem post={postData} />
+                    <BlogItem post={postData} key={postData.id}/>
                 ); 
             } else {
                 return null;    

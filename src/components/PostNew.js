@@ -20,8 +20,9 @@ class PostNew extends Component {
 
     onSubmit(values) {
         values['timestamp'] = Date.now();
-        values['udid'] = Date.now();
+        values['id'] = Date.now();
 
+        // Redirect to homepage once the post has been sent.
         this.props.createNewPost(values, () => {
             this.props.history.push('/')
         });
