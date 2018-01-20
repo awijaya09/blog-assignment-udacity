@@ -1,39 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchBlogPosts, getPostByCat } from '../actions/index';
+import { fetchBlogPosts } from '../actions/index';
 import BlogItem from '../components/BlogItem';
 import _ from 'lodash';
 
 class BlogList extends Component {
+    constructor(props) {
+        super(props);
+        this.checkPostDeleted = this.checkPostDeleted.bind(this);
+    }
 
     componentDidMount(){
-        const { category } = this.props.match.params;
-        if (!category) {
-            console.log("Fetching all posts");
-            this.props.fetchBlogPosts();
+        this.props.fetchBlogPosts();        
+    }
+
+    checkPostDeleted(postData) {
+        if(!postData.deleted) {
+            return (
+                <BlogItem post={postData} key={postData.id}/>
+            ); 
         } else {
-            console.log("Fetching posts with category: " + category);
-            this.props.getPostByCat(category);
+            return null;    
         }
-        
     }
 
     renderBlogPost() {
         const { posts } = this.props;
+        const { category } = this.props.match.params;
         if (!posts) {
             return (
                 <div>Getting data...</div>
             )
         }
         return _.map(posts, postData => {
-            if(!postData.deleted) {
-                return (
-                    <BlogItem post={postData} key={postData.id}/>
-                ); 
+            if(!category) {
+                return this.checkPostDeleted(postData);
             } else {
-                return null;    
+                if (postData.category === category) {
+                    return this.checkPostDeleted(postData);
+                } else {
+                    return null;
+                }
             }
+            
         });
         
     }
@@ -55,12 +65,12 @@ class BlogList extends Component {
     };
 }
 
-function mapStateToProps({ posts }, ownProps) {
+function mapStateToProps({ posts }) {
     return { posts };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchBlogPosts, getPostByCat }, dispatch);
+    return bindActionCreators({ fetchBlogPosts }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogList);
