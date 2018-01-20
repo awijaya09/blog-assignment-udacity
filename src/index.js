@@ -9,7 +9,7 @@ import reducers from './reducers';
 import HeaderMenu from './components/HeaderMenu';
 import BlogList from './containers/blog-list';
 import PostNew from './components/PostNew';
-import PostSingle from './components/PostSingle';
+import PostSingle from './containers/PostSingle';
 
 import './styles/style.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -24,7 +24,8 @@ ReactDOM.render(
                 <div className="container">
                     <Switch>
                         <Route path="/posts/new" component={PostNew} />
-                        <Route path="/posts/:id" component={PostSingle} />
+                        <Route path="/:category/:id" component={PostSingle} />
+                        <Route path="/:category" component={BlogList} />
                         <Route path="/" component={BlogList} />
                     </Switch>
                 </div>

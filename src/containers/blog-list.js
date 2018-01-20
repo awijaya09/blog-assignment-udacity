@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchBlogPosts } from '../actions/index';
+import { fetchBlogPosts, getPostByCat } from '../actions/index';
 import BlogItem from '../components/BlogItem';
 import _ from 'lodash';
 
 class BlogList extends Component {
 
     componentDidMount(){
-        this.props.fetchBlogPosts();
+        const { category } = this.props.match.params;
+        if (!category) {
+            console.log("Fetching all posts");
+            this.props.fetchBlogPosts();
+        } else {
+            console.log("Fetching posts with category: " + category);
+            this.props.getPostByCat(category);
+        }
+        
     }
 
     renderBlogPost() {
-        return _.map(this.props.posts, postData => {
+        const { posts } = this.props;
+        if (!posts) {
+            return (
+                <div>Getting data...</div>
+            )
+        }
+        return _.map(posts, postData => {
             if(!postData.deleted) {
-                console.log(postData.id);
                 return (
                     <BlogItem post={postData} key={postData.id}/>
                 ); 
@@ -42,12 +55,12 @@ class BlogList extends Component {
     };
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts }, ownProps) {
     return { posts };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchBlogPosts }, dispatch);
+    return bindActionCreators({ fetchBlogPosts, getPostByCat }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogList);

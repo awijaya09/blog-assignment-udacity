@@ -10,7 +10,7 @@ class BlogItem extends Component {
             <div className="card mb-3">
                 <div className="card-body" >
                     <div className="col-sm-12">
-                        <Link to={`posts/${postData.id}`}><h3 className="card-title">{ postData.title }</h3></Link>
+                        <Link to={`${postData.category}/${postData.id}`}><h3 className="card-title">{ postData.title }</h3></Link>
                         <p className="blog-post-meta">
                             <strong>
                                 <Timestamp time={ postData.timestamp/1000} format='full' />
