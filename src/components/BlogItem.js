@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateVote } from '../actions';
 import Timestamp from 'react-timestamp';
 
 class BlogItem extends Component {
-   
+
+    constructor(props) {
+        super(props);
+        this.handleVote = this.handleVote.bind(this);
+    }
+    handleVote(e){
+        e.preventDefault();
+        console.log("updating vote for postid : " + this.props.post.id);
+        this.props.updateVote(this.props.post.id, 'upVote');
+    }
+
     render() {
         const postData = this.props.post
         return (
@@ -11,7 +23,7 @@ class BlogItem extends Component {
                 <div className="card-body" >
                     <div className="row">
                         <div className="col-sm-2">
-                            <div className="col-sm-12"><i className="fa fa-angle-up"></i></div>
+                            <div className="col-sm-12"><a className="btn btn-default" onClick={this.handleVote}><i className="fa fa-angle-up"></i></a></div>
                             <div className="col-sm-12"><strong>{postData.voteScore}</strong></div>
                             <div className="col-sm-12"><i className="fa fa-angle-down"></i></div>
                         </div>
@@ -42,4 +54,4 @@ class BlogItem extends Component {
     }
 }
 
-export default BlogItem;
+export default connect(null, { updateVote })(BlogItem);

@@ -6,6 +6,7 @@ axios.defaults.headers.common['Authorization'] = "andree";
 export const FETCH_BLOG_POSTS = "FETCH_BLOG_POSTS";
 export const POST_NEW_BLOG = "POST_NEW_BLOG";
 export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
+export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
 
 export function fetchBlogPosts() {
     const url = BLOG_REQUEST_URL + 'posts';
@@ -21,6 +22,7 @@ export function fetchBlogPosts() {
 
 export function createNewPost(values, callback) {
     const post_url = BLOG_REQUEST_URL + 'posts';
+    console.log(values);
     const request = axios.post(post_url, values )
         .then(() => {
             callback()
@@ -34,11 +36,23 @@ export function createNewPost(values, callback) {
 
 export function getPost(postID) {
     const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
-    console.log(post_url);
     const request = axios.get(post_url);
 
     return {
         type: FETCH_SINGLE_POST,
         payload: request
     };
+}
+
+export function updateVote(postID, vote) {
+    const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
+    const voteOption = JSON.stringify({option: vote});
+    console.log("Data sent: "+ voteOption);
+    const request = axios.post(post_url, voteOption);
+
+    return {
+        type: UPDATE_POST_VOTE,
+        payload: request
+    }
+
 }
