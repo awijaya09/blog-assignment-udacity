@@ -46,7 +46,7 @@ export function getPost(postID) {
 
 export function updateVote(postID, vote) {
     const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
-    const voteOption = JSON.stringify({option: vote});
+    const voteOption = {"option":vote};
     console.log("Data sent: "+ voteOption);
     const request = axios.post(post_url, voteOption);
 

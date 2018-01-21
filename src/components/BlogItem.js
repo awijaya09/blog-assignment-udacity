@@ -10,10 +10,9 @@ class BlogItem extends Component {
         super(props);
         this.handleVote = this.handleVote.bind(this);
     }
-    handleVote(e){
+    handleVote(e, val){
         e.preventDefault();
-        console.log("updating vote for postid : " + this.props.post.id);
-        this.props.updateVote(this.props.post.id, 'upVote');
+        this.props.updateVote(this.props.post.id, val);
     }
 
     render() {
@@ -23,9 +22,15 @@ class BlogItem extends Component {
                 <div className="card-body" >
                     <div className="row">
                         <div className="col-sm-2">
-                            <div className="col-sm-12"><a className="btn btn-default" onClick={this.handleVote}><i className="fa fa-angle-up"></i></a></div>
-                            <div className="col-sm-12"><strong>{postData.voteScore}</strong></div>
-                            <div className="col-sm-12"><i className="fa fa-angle-down"></i></div>
+                            <div className="col-sm-12">
+                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'upVote')}><i className="fa fa-angle-up"></i></a>
+                            </div>
+                            <div className="col-sm-12">
+                                <span className="btn btn-default">{postData.voteScore}</span>
+                            </div>
+                            <div className="col-sm-12">
+                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'downVote')}><i className="fa fa-angle-down"></i></a>
+                            </div>
                         </div>
                         <div className="col-sm-10">
                             <Link to={`${postData.category}/${postData.id}`}><h3 className="card-title">{ postData.title }</h3></Link>
