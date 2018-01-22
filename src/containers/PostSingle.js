@@ -16,9 +16,10 @@ class PostSingle extends Component {
     }
 
     removePost(){
-        this.props.deletePost(this.props.post.id, () => {
+        this.props.deletePost(this.props.post.id, (payload) => {
             console.log("The post has been deleted!");
             this.props.history.push('/')
+            return payload
         });
     }
     render() {

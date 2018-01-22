@@ -58,7 +58,7 @@ export function updateVote(postID, vote) {
 export function deletePost(postID, callback) {
     const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
     const request = axios.delete(post_url)
-        .then(() => callback());
+        .then((payload) => callback(payload));
 
     return {
         type: DELETE_SINGLE_POST,
