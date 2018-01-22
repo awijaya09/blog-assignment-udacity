@@ -7,10 +7,10 @@ export const FETCH_BLOG_POSTS = "FETCH_BLOG_POSTS";
 export const POST_NEW_BLOG = "POST_NEW_BLOG";
 export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
 export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
+export const DELETE_SINGLE_POST = "DELETE_SINGLE_POST";
 
 export function fetchBlogPosts() {
     const url = BLOG_REQUEST_URL + 'posts';
-
     const request = axios.get(url);
 
     return {
@@ -22,7 +22,6 @@ export function fetchBlogPosts() {
 
 export function createNewPost(values, callback) {
     const post_url = BLOG_REQUEST_URL + 'posts';
-    console.log(values);
     const request = axios.post(post_url, values )
         .then(() => {
             callback()
@@ -47,7 +46,6 @@ export function getPost(postID) {
 export function updateVote(postID, vote) {
     const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
     const voteOption = {"option":vote};
-    console.log("Data sent: "+ voteOption);
     const request = axios.post(post_url, voteOption);
 
     return {
@@ -55,4 +53,15 @@ export function updateVote(postID, vote) {
         payload: request
     }
 
+}
+
+export function deletePost(postID, callback) {
+    const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
+    const request = axios.delete(post_url)
+        .then(() => callback());
+
+    return {
+        type: DELETE_SINGLE_POST,
+        payload: request
+    }
 }
