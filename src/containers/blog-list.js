@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchBlogPosts } from '../actions/index';
-import BlogItem from '../components/BlogItem';
+import BlogItem from './BlogItem';
 import _ from 'lodash';
 
 class BlogList extends Component {
