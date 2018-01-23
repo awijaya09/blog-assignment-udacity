@@ -22,7 +22,7 @@ export function fetchBlogPosts() {
 
 export function createNewPost(values, callback) {
     const post_url = BLOG_REQUEST_URL + 'posts';
-    const request = axios.post(post_url, values )
+    const request = axios.post(post_url, values)
         .then(() => {
             callback()
         });
