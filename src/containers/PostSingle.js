@@ -30,7 +30,7 @@ class PostSingle extends Component {
         }
         return (
             <div className="col-sm-8 blog-main">
-                <Link className="btn btn-default" to="/"><i className="fa fa-angle-left"></i> Back to home</Link>
+                <Link className="btn btn-outline-secondary mb-2" to="/"><i className="fa fa-angle-left"></i> Back to home</Link>
                 <div className="blog-post">
                     <h2 className="blog-post-title">{post.title}</h2>
                     <p className="blog-post-meta">
