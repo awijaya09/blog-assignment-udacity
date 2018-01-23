@@ -34,8 +34,10 @@ class BlogList extends Component {
 
     updateOrder(e, orderBy) {
         e.preventDefault();
+        console.log("order by : " + orderBy);
         const posts = this.state.curPosts;
         const orderedPost = _.orderBy(posts, ['timestamp'], [orderBy]);
+        console.log(orderedPost);
         this.setState({
             curPosts: orderedPost,
         });
