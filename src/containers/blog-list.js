@@ -32,7 +32,8 @@ class BlogList extends Component {
         }
     }
 
-    updateOrder(orderBy) {
+    updateOrder(e, orderBy) {
+        e.preventDefault();
         const posts = this.state.curPosts;
         const orderedPost = _.orderBy(posts, ['timestamp'], [orderBy]);
         this.setState({
@@ -40,15 +41,15 @@ class BlogList extends Component {
         });
     }
     renderBlogPost() {
-        const { posts } = this.props;
+        const { curPosts } = this.state;
         const { category } = this.props.match.params;
-        if (!posts) {
+        if (!curPosts) {
             return (
                 <div>Getting data...</div>
             )
         }
         // Default sorting from newest to oldest 
-        const sortedPost = _.orderBy(posts, ['timestamp'], ['desc']);
+        const sortedPost = _.orderBy(curPosts, ['timestamp'], ['desc']);
         return _.map(sortedPost, postData => {
             if(!category) {
                 return this.checkPostDeleted(postData);
@@ -73,13 +74,13 @@ class BlogList extends Component {
                         </div>
                 </div>
                 <div className="col-sm-8 blog-main">
-                    <div class="dropdown mb-2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div className="dropdown mb-2">
+                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Sort By
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" onClick={this.updateOrder('asc')}>Newest to Oldest</a>
-                            <a class="dropdown-item" onClick={this.updateOrder('desc')}>Oldest to Newest</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'asc')}>Newest to Oldest</a>
+                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'desc')}>Oldest to Newest</a>
                         </div>
                     </div>
                     { this.renderBlogPost() }
