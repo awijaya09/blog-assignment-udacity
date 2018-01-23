@@ -32,10 +32,10 @@ class BlogList extends Component {
         }
     }
 
-    updateOrder(e, orderBy) {
+    updateOrder(e, orderBy, orderMode) {
         e.preventDefault();
         const posts = this.state.curPosts;
-        const orderedPost = _.orderBy(posts, ['timestamp'], [orderBy]);
+        const orderedPost = _.orderBy(posts, [orderBy], [orderMode]);
         this.setState({
             curPosts: orderedPost,
         });
@@ -75,15 +75,27 @@ class BlogList extends Component {
                         </div>
                 </div>
                 <div className="col-sm-8 blog-main">
-                    <div className="dropdown mb-2">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort By
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'desc')}>Newest to Oldest</a>
-                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'asc')}>Oldest to Newest</a>
+                    <div className="row">
+                        <div className="col-sm-2 dropdown mb-2">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sort By
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'timestamp', 'desc')}>Newest to Oldest</a>
+                                <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'timestamp', 'asc')}>Oldest to Newest</a>
+                            </div>
+                        </div>
+                        <div className="col-sm-2 dropdown mb-2">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Rank By
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'voteScore', 'desc')}>Most Voted</a>
+                                <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'voteScore', 'asc')}>Lowest Voted</a>
+                            </div>
                         </div>
                     </div>
+                   
                     { this.renderBlogPost() }
                 </div>
             </div>
