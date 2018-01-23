@@ -10,6 +10,7 @@ export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
 export const DELETE_SINGLE_POST = "DELETE_SINGLE_POST";
 export const FETCH_POST_COMMENTS = "FETCH_POST_COMMENTS";
 export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
+export const DELETE_SINGLE_COMMENT = "DELETE_SINGLE_COMMENT";
 
 export function fetchBlogPosts(callback) {
     const url = BLOG_REQUEST_URL + 'posts';
@@ -42,6 +43,16 @@ export function createNewComment(values, callback) {
 
     return {
         type: POST_NEW_COMMENT,
+        payload: request
+    }
+}
+
+export function deleteComment(commentID) {
+    const url = BLOG_REQUEST_URL + 'comments/' + commentID;
+    const request = axios.delete(url);
+
+    return {
+        type: DELETE_SINGLE_COMMENT,
         payload: request
     }
 }

@@ -9,13 +9,17 @@ export default class CommentItem extends Component {
         return (
             <div className="col-sm-12 mt-3 border-bottom">
                 <div className="blog-comment">
-                    <p className=""><strong>{commentData.body}</strong></p>
+                    <p className="">
+                        <strong>{commentData.body}</strong>
+                        <button type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                         </button>
+                    </p>
                     <p className="blog-post-meta">
                         <strong>
                             <Timestamp time={ commentData.timestamp/1000} format='full' />
                         </strong> by <Link to="/">{ commentData.author }</Link>
                     </p>
-                    
                 </div>
                 
             </div>        
