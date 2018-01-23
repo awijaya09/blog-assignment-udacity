@@ -33,7 +33,9 @@ class BlogList extends Component {
                 <div>Getting data...</div>
             )
         }
-        return _.map(posts, postData => {
+        // Default sorting from newest to oldest
+        const sortedPost = _.orderBy(posts, ['timestamp'], ['desc']);
+        return _.map(sortedPost, postData => {
             if(!category) {
                 return this.checkPostDeleted(postData);
             } else {
