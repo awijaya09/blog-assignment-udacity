@@ -34,10 +34,8 @@ class BlogList extends Component {
 
     updateOrder(e, orderBy) {
         e.preventDefault();
-        console.log("order by : " + orderBy);
         const posts = this.state.curPosts;
         const orderedPost = _.orderBy(posts, ['timestamp'], [orderBy]);
-        console.log(orderedPost);
         this.setState({
             curPosts: orderedPost,
         });
@@ -45,14 +43,15 @@ class BlogList extends Component {
     renderBlogPost() {
         const { curPosts } = this.state;
         const { category } = this.props.match.params;
+        console.log("Post now: " + curPosts);
         if (!curPosts) {
             return (
                 <div>Getting data...</div>
             )
         }
         // Default sorting from newest to oldest 
-        const sortedPost = _.orderBy(curPosts, ['timestamp'], ['desc']);
-        return _.map(sortedPost, postData => {
+        return _.map(curPosts, postData => {
+            console.log("Post now: " + postData.id);
             if(!category) {
                 return this.checkPostDeleted(postData);
             } else {
@@ -81,8 +80,8 @@ class BlogList extends Component {
                             Sort By
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'asc')}>Newest to Oldest</a>
-                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'desc')}>Oldest to Newest</a>
+                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'desc')}>Newest to Oldest</a>
+                            <a className="dropdown-item" onClick={(e) => this.updateOrder(e,'asc')}>Oldest to Newest</a>
                         </div>
                     </div>
                     { this.renderBlogPost() }
