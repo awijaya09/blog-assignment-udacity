@@ -9,9 +9,10 @@ export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
 export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
 export const DELETE_SINGLE_POST = "DELETE_SINGLE_POST";
 
-export function fetchBlogPosts() {
+export function fetchBlogPosts(callback) {
     const url = BLOG_REQUEST_URL + 'posts';
-    const request = axios.get(url);
+    const request = axios.get(url)
+        .then((payload) => callback(payload));
 
     return {
         type: FETCH_BLOG_POSTS,
