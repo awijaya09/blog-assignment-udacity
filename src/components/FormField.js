@@ -42,12 +42,21 @@ export default class FormField extends Component {
 
     render() {
         const { field } = this.props
+        const length = () => {
+            if (field.label) {
+                return true;
+            } 
+            return false
+        };
         return (
         <div className="form-group row  has-danger">
-            <label htmlFor={field.id} className="col-sm-2 col-form-label">{field.label}</label>
+            { length() &&  <label htmlFor={field.id} className="col-sm-2 col-form-label">{field.label}</label> }
+            {field.id === "commentBody" ? this.showTextarea(field): null}
+            {field.id === "commentAuthor" ? this.showInput(field): null}
             <div className="col-sm-10">
                 {field.id === "postTitle" ? this.showInput(field) : null}
                 {field.id === "postAuthor" ? this.showInput(field): null}
+                
                 {field.id === "postCat" ? this.showOption(field) : null}
                 {field.id === "postBody" ? this.showTextarea(field) : null}
                 <div className="invalid-feedback">

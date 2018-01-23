@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateVote } from '../actions';
 import Timestamp from 'react-timestamp';
+import CommentList from './CommentList';
 
 class BlogItem extends Component {
 
@@ -46,12 +47,7 @@ class BlogItem extends Component {
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center">
-                        <Link to="#" className="mx-auto text-secondary" data-toggle="collapse" data-target="#collapseExample">{postData.commentCount} Comment(s)</Link>
-                    </li>
-                    <li className="collapse" id="collapseExample">
-                        <div className="m-2">
-                            Place the comment here
-                        </div>
+                        <Link to="#" className="mx-auto text-secondary" >{postData.commentCount} Comment(s)</Link>
                     </li>
                 </ul>
             </div>        

@@ -131,6 +131,17 @@
   /*
    * Blog posts
    */
+
+   .border-top {
+    border-top: 1px solid #dee2e6!important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #dee2e6!important;
+}
+  .blog-comment {
+    margin-bottom:2rem;
+  }
   .blog-post {
     margin-bottom: 4rem;
   }
@@ -138,6 +149,7 @@
     margin-bottom: .25rem;
     font-size: 2.5rem;
   }
+  
   .blog-post-meta {
     margin-bottom: 1.25rem;
     color: #999;
