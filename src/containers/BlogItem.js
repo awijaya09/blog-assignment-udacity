@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateVote } from '../actions';
 import Timestamp from 'react-timestamp';
-import CommentList from './CommentList';
 
 class BlogItem extends Component {
 
-    constructor(props) {
-        super(props);
-        this.handleVote = this.handleVote.bind(this);
-    }
     handleVote(e, val){
         e.preventDefault();
         this.props.updateVote(this.props.post.id, 'posts/', val, (payload) => {
+            console.log(payload);
             return payload
         });
     }
@@ -26,13 +22,17 @@ class BlogItem extends Component {
                     <div className="row">
                         <div className="col-sm-2">
                             <div className="col-sm-12">
-                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'upVote')}><i className="fa fa-angle-up"></i></a>
+                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'upVote')}>
+                                    <i className="fa fa-angle-up"></i>
+                                </a>
                             </div>
                             <div className="col-sm-12">
                                 <span className="btn btn-default">{postData.voteScore}</span>
                             </div>
                             <div className="col-sm-12">
-                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'downVote')}><i className="fa fa-angle-down"></i></a>
+                                <a className="btn btn-default" onClick={(e) => this.handleVote(e, 'downVote')}>
+                                    <i className="fa fa-angle-down"></i>
+                                </a>
                             </div>
                         </div>
                         <div className="col-sm-10">
@@ -49,7 +49,7 @@ class BlogItem extends Component {
                 </div>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center">
-                        <Link to="#" className="mx-auto text-secondary" >{postData.commentCount} Comment(s)</Link>
+                        <span className="mx-auto text-secondary" >{postData.commentCount} Comment(s)</span>
                     </li>
                 </ul>
             </div>        

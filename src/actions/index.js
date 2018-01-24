@@ -87,11 +87,12 @@ export function updateVote(postID, type, vote, callback) {
     const voteOption = {"option":vote};
     const request = axios.post(post_url, voteOption)
         .then((payload)=> callback(payload));
+
     var returnType = UPDATE_COMMENT_VOTE;
     if (type === 'posts/') {
+        console.log("type has been changed to: " + UPDATE_POST_VOTE, post_url);
         returnType = UPDATE_POST_VOTE;
     }
-    console.log("Return type: " + returnType);
     return {
         type: returnType,
         payload: request
