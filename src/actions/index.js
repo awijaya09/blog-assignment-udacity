@@ -7,6 +7,7 @@ export const FETCH_BLOG_POSTS = "FETCH_BLOG_POSTS";
 export const POST_NEW_BLOG = "POST_NEW_BLOG";
 export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
 export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
+export const UPDATE_COMMENT_VOTE = "UPDATE_COMMENT_VOTE";
 export const DELETE_SINGLE_POST = "DELETE_SINGLE_POST";
 export const FETCH_POST_COMMENTS = "FETCH_POST_COMMENTS";
 export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
@@ -81,13 +82,18 @@ export function getPost(postID) {
     };
 }
 
-export function updateVote(postID, vote) {
-    const post_url = BLOG_REQUEST_URL + 'posts/' + postID;
+export function updateVote(postID, type, vote, callback) {
+    const post_url = BLOG_REQUEST_URL + type + postID;
     const voteOption = {"option":vote};
-    const request = axios.post(post_url, voteOption);
-
+    const request = axios.post(post_url, voteOption)
+        .then((payload)=> callback(payload));
+    var returnType = UPDATE_COMMENT_VOTE;
+    if (type === 'posts/') {
+        returnType = UPDATE_POST_VOTE;
+    }
+    console.log("Return type: " + returnType);
     return {
-        type: UPDATE_POST_VOTE,
+        type: returnType,
         payload: request
     }
 

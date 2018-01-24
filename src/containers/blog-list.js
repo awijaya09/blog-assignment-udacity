@@ -43,7 +43,6 @@ class BlogList extends Component {
     renderBlogPost() {
         const { curPosts } = this.state;
         const { category } = this.props.match.params;
-        console.log("Post now: " + curPosts);
         if (!curPosts) {
             return (
                 <div>Getting data...</div>
@@ -51,7 +50,6 @@ class BlogList extends Component {
         }
         // Default sorting from newest to oldest 
         return _.map(curPosts, postData => {
-            console.log("Post now: " + postData.id);
             if(!category) {
                 return this.checkPostDeleted(postData);
             } else {
