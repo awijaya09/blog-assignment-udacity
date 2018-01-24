@@ -9,6 +9,7 @@ class BlogList extends Component {
     constructor(props) {
         super(props);
         this.checkPostDeleted = this.checkPostDeleted.bind(this);
+        this.getBlogPost = this.getBlogPost.bind(this);
         this.updateOrder = this.updateOrder.bind(this);
         this.state = {
             curPosts: null
@@ -16,16 +17,20 @@ class BlogList extends Component {
     }
 
     componentDidMount(){
+        this.getBlogPost();   
+    }
+
+    getBlogPost() {
         this.props.fetchBlogPosts((payload) => {
             this.setState({ curPosts: payload.data });
             return payload;
-        });        
+        }); 
     }
 
     checkPostDeleted(postData) {
         if(!postData.deleted) {
             return (
-                <BlogItem post={postData} key={postData.id}/>
+                <BlogItem post={postData} key={postData.id} onVoteUpdate={this.getBlogPost}/>
             ); 
         } else {
             return null;    

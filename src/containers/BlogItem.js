@@ -10,6 +10,7 @@ class BlogItem extends Component {
         e.preventDefault();
         this.props.updateVote(this.props.post.id, 'posts/', val, (payload) => {
             console.log(payload);
+            this.props.onVoteUpdate();
             return payload
         });
     }
