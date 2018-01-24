@@ -12,18 +12,6 @@ export const FETCH_POST_COMMENTS = "FETCH_POST_COMMENTS";
 export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
 export const DELETE_SINGLE_COMMENT = "DELETE_SINGLE_COMMENT";
 
-export function fetchBlogPosts(callback) {
-    const url = BLOG_REQUEST_URL + 'posts';
-    const request = axios.get(url)
-        .then((payload) => callback(payload));
-
-    return {
-        type: FETCH_BLOG_POSTS,
-        payload: request
-    };
-
-}
-
 export function fetchComments(postID) {
     const url = BLOG_REQUEST_URL + 'posts/' + postID + '/comments';
     const request = axios.get(url);
@@ -56,6 +44,18 @@ export function deleteComment(commentID, callback) {
         type: DELETE_SINGLE_COMMENT,
         payload: request
     }
+}
+
+export function fetchBlogPosts(callback) {
+    const url = BLOG_REQUEST_URL + 'posts';
+    const request = axios.get(url)
+        .then((payload) => callback(payload));
+
+    return {
+        type: FETCH_BLOG_POSTS,
+        payload: request
+    };
+
 }
 
 export function createNewPost(values, callback) {

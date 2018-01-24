@@ -52,7 +52,6 @@ class PostSingle extends Component {
                             </div>
                         </div>
                         <div className="col-sm-12">
-                            <h5 className="mt-3 float-left col-sm-5">{post.commentCount} Comment(s)</h5>
                             <a className="btn btn-outline-secondary btn-sm float-right mt-3 col-sm-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Add new comment
                             </a>
