@@ -47,9 +47,10 @@ export function createNewComment(values, callback) {
     }
 }
 
-export function deleteComment(commentID) {
+export function deleteComment(commentID, callback) {
     const url = BLOG_REQUEST_URL + 'comments/' + commentID;
-    const request = axios.delete(url);
+    const request = axios.delete(url)
+    .then((payload) => callback(payload));
 
     return {
         type: DELETE_SINGLE_COMMENT,
