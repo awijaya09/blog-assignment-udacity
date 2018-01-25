@@ -35,8 +35,8 @@ class PostComment extends Component {
         const { handleSubmit } = this.props
         return (
             
-            <div className="col-sm-10">
-                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div className="col-sm-10 ">
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="pt-4">
                     <div className="col-sm-12">
                         <Field
                             placeholder="Enter your comment"
@@ -50,7 +50,7 @@ class PostComment extends Component {
                             name="author"
                             component={this.renderField}
                         />
-                        <button id="buttonSubmit" type="submit" className="btn btn-primary col-sm-12">Submit</button>
+                        <button id="buttonSubmit" type="submit" className="btn btn-primary mr-10">Submit</button>
                     </div>
                 </form>
             </div>

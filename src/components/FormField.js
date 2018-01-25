@@ -49,7 +49,7 @@ export default class FormField extends Component {
             return false
         };
         return (
-        <div className="form-group row  has-danger">
+        <div className="form-group has-danger">
             { length() &&  <label htmlFor={field.id} className="col-sm-2 col-form-label">{field.label}</label> }
             {field.id === "commentBody" ? this.showTextarea(field): null}
             {field.id === "commentAuthor" ? this.showInput(field): null}

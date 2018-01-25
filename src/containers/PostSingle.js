@@ -45,20 +45,12 @@ class PostSingle extends Component {
                     <p> #{post.category}</p>
                 </div>
                 <div className="col-sm-12 border-top">
-                    <div className="row">
-                        <div className="col-sm-12 mt-3">
-                            <div className="collapse" id="collapseExample">    
-                                <PostComment postID={post.id} />
-                            </div>
-                        </div>
-                        <div className="col-sm-12">
-                            <a className="btn btn-outline-secondary btn-sm float-right mt-3 col-sm-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                Add new comment
-                            </a>
-                        </div>
-                        
-                    </div>
+                    <div className="col-sm-8 mb-4 mt-3"><h4>Comments</h4></div>
                     <CommentList postID={post.id}/>
+                </div>
+                <div className="col-sm-12 border-top">
+                    <div className="col-sm-8 mb-4 mt-3"><h4>Add new comment</h4></div>
+                    <PostComment postID={post.id} />
                 </div>
             </div>
         )
