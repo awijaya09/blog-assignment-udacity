@@ -42,7 +42,7 @@ class CommentItem extends Component {
                             </div>
                         </div>
                         <div className="col-sm-10">
-                            <p className="mt-2">
+                            <p className="mt-4">
                                 <strong>{commentData.body}</strong>
                                 <button type="button" className="close" aria-label="Close" onClick={this.removeComment}>
                                     <span aria-hidden="true">&times;</span>
@@ -51,7 +51,7 @@ class CommentItem extends Component {
                             <p className="blog-post-meta">
                                 <strong>
                                     <Timestamp time={ commentData.timestamp/1000} format='full' />
-                                </strong> by <Link to="/">{ commentData.author }</Link>
+                                </strong> by <Link to="#">{ commentData.author }</Link>
                             </p>
                         </div>
                     </div>

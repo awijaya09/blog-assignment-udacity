@@ -68,7 +68,7 @@ class PostNew extends Component {
                                 component={this.renderField}
                             />
                             
-                            <div className="form-group row">
+                            <div className="form-group">
                                 <label htmlFor="buttonSubmit" className="col-sm-2 col-form-label"></label>
                                 <div className="col-sm-10">
                                     <button id="buttonSubmit" type="submit" className="btn btn-primary">Submit</button>

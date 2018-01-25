@@ -34,6 +34,7 @@ export default class FormField extends Component {
             <textarea 
                 id={field.id}
                 className="form-control"
+                placeholder={field.placeholder}
                 {...field.input}
             />
         )
