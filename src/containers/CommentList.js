@@ -23,7 +23,6 @@ class CommentList extends Component {
             <div className="row">
                 {_.map(_.orderBy(comments, ['timestamp'], ['desc']), commentData => {
                     if(!commentData.deleted){
-                        
                         return <CommentItem key={commentData.id} commentData={commentData}/>
                     }
                 })}

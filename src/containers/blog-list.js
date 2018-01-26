@@ -73,6 +73,7 @@ class BlogList extends Component {
         
     }
     render() {
+       
         return (
             <div className="row">
                 <div className="blog-header">
