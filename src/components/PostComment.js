@@ -20,6 +20,7 @@ class PostComment extends Component {
 
     onSubmit(values) {
         const { postID } = this.props;
+
         values['timestamp'] = Date.now();
         values['id'] = Date.now();
         values['parentId'] = postID;
@@ -67,7 +68,6 @@ function validate(values) {
     if(!values.body || values.body.length > 10) {
         errors.title = "Enter the comment body";
     }
-    console.log("error: " + errors.title);
     // If errors is empty, the form is good to go
     return errors;
 }

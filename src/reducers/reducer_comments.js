@@ -1,8 +1,12 @@
-import { FETCH_POST_COMMENTS, DELETE_SINGLE_COMMENT, UPDATE_COMMENT_VOTE } from '../actions/index';
+import { FETCH_POST_COMMENTS, DELETE_SINGLE_COMMENT, UPDATE_COMMENT_VOTE, EDIT_SINGLE_COMMENT, FETCH_SINGLE_COMMENT} from '../actions/index';
 import _ from 'lodash';
 
 export default function(state = {}, action) {
     switch(action.type) {
+    case FETCH_SINGLE_COMMENT:
+        return { ...state , [action.payload.data.id]: action.payload.data }; 
+    case EDIT_SINGLE_COMMENT:
+        return {...state, [action.payload.data.id]: action.payload.data};
     case UPDATE_COMMENT_VOTE:
         const newScore = action.payload.data.voteScore;
         return { 

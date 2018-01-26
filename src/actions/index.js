@@ -13,6 +13,30 @@ export const FETCH_POST_COMMENTS = "FETCH_POST_COMMENTS";
 export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
 export const DELETE_SINGLE_COMMENT = "DELETE_SINGLE_COMMENT";
 export const EDIT_SINGLE_POST = "EDIT_SINGLE_POST";
+export const EDIT_SINGLE_COMMENT = "EDIT_SINGLE_COMMENT";
+export const FETCH_SINGLE_COMMENT = "FETCH_SINGLE_COMMENT";
+
+export function fetchSingleComment(commentID) {
+    const url = BLOG_REQUEST_URL + 'comments/' + commentID;
+    const request = axios.get(url);
+
+    return {
+        type : FETCH_SINGLE_COMMENT,
+        payload: request
+    }
+}
+
+
+export function editComment(commentID, values, callback) {
+    const url = BLOG_REQUEST_URL + 'comments/' + commentID;
+    const request = axios.put(url, values)
+        .then((payload) => callback(payload));
+
+    return {
+        type: EDIT_SINGLE_COMMENT,
+        payload: request
+    }
+}
 
 export function fetchComments(postID) {
     const url = BLOG_REQUEST_URL + 'posts/' + postID + '/comments';

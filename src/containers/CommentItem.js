@@ -53,6 +53,7 @@ class CommentItem extends Component {
                                     <Timestamp time={ commentData.timestamp/1000} format='full' />
                                 </strong> by <Link to="#">{ commentData.author }</Link>
                             </p>
+                            <Link to={`/comments/${commentData.id}`} className="float-right"><i className="fa fa-pencil-square-o"></i></Link>
                         </div>
                     </div>
                 </div>
