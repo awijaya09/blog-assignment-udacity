@@ -10,7 +10,6 @@ export default class FormField extends Component {
                 id={field.id}
                 className={classString}
                 placeholder={field.placeholder}
-                value={field.value}
                 {...field.input}
             />
         )
@@ -20,7 +19,7 @@ export default class FormField extends Component {
             <select 
                 id={field.id}
                 className="form-control"
-                {...field.input}
+                {...field.input}             
             >
                 <option>react</option>
                 <option>redux</option>

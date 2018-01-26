@@ -10,6 +10,7 @@ import HeaderMenu from './components/HeaderMenu';
 import BlogList from './containers/blog-list';
 import PostNew from './components/PostNew';
 import PostSingle from './containers/PostSingle';
+import PostEdit from './containers/PostEdit';
 
 import './styles/style.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -24,6 +25,7 @@ ReactDOM.render(
                 <div className="container">
                     <Switch>
                         <Route path="/posts/new" component={PostNew} />
+                        <Route path="/:category/:id/edit" component={PostEdit} />
                         <Route path="/:category/:id" component={PostSingle} />
                         <Route path="/:category" component={BlogList} />
                         <Route path="/" component={BlogList} />

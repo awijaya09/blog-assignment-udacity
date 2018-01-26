@@ -1,8 +1,10 @@
-import { FETCH_BLOG_POSTS, FETCH_SINGLE_POST, UPDATE_POST_VOTE, DELETE_SINGLE_POST} from '../actions/index';
+import { FETCH_BLOG_POSTS, FETCH_SINGLE_POST, UPDATE_POST_VOTE, DELETE_SINGLE_POST, EDIT_SINGLE_POST} from '../actions/index';
 import _ from 'lodash';
 
 export default function(state = {}, action) {
     switch(action.type) {
+    case EDIT_SINGLE_POST:
+        return { ...state , [action.payload.data.id]: action.payload.data };
     case DELETE_SINGLE_POST:
         return {
             ...state,

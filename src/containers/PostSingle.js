@@ -23,6 +23,7 @@ class PostSingle extends Component {
             return payload
         });
     }
+
     render() {
         const { post } = this.props;
         if (!post) {
@@ -34,6 +35,7 @@ class PostSingle extends Component {
             <div className="col-sm-8 blog-main">
                 <Link className="btn btn-outline-secondary mb-2" to="/"><i className="fa fa-angle-left"></i> Back to home</Link>
                 <button className="btn btn-outline-danger float-right" onClick={this.removePost}>Delete</button>
+                <Link className="btn btn-outline-info mr-3 float-right" to={`/${post.category}/${post.id}/edit`}>Edit</Link>
                 <div className="blog-post mt-2">
                     <h2 className="blog-post-title">{post.title}</h2>
                     <p className="blog-post-meta">
