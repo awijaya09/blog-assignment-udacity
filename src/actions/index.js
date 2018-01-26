@@ -1,20 +1,8 @@
 import axios from 'axios';
-
+import { FETCH_SINGLE_COMMENT, EDIT_SINGLE_COMMENT, FETCH_POST_COMMENTS, POST_NEW_COMMENT , DELETE_SINGLE_COMMENT, FETCH_BLOG_POSTS, FETCH_SINGLE_POST, POST_NEW_BLOG, UPDATE_COMMENT_VOTE, UPDATE_POST_VOTE, DELETE_SINGLE_POST, EDIT_SINGLE_POST} from './actionTypes';
 const BLOG_REQUEST_URL = 'http://localhost:3001/';
 axios.defaults.headers.common['Authorization'] = "andree";
 
-export const FETCH_BLOG_POSTS = "FETCH_BLOG_POSTS";
-export const POST_NEW_BLOG = "POST_NEW_BLOG";
-export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
-export const UPDATE_POST_VOTE = "UPDATE_POST_VOTE";
-export const UPDATE_COMMENT_VOTE = "UPDATE_COMMENT_VOTE";
-export const DELETE_SINGLE_POST = "DELETE_SINGLE_POST";
-export const FETCH_POST_COMMENTS = "FETCH_POST_COMMENTS";
-export const POST_NEW_COMMENT = "POST_NEW_COMMENT";
-export const DELETE_SINGLE_COMMENT = "DELETE_SINGLE_COMMENT";
-export const EDIT_SINGLE_POST = "EDIT_SINGLE_POST";
-export const EDIT_SINGLE_COMMENT = "EDIT_SINGLE_COMMENT";
-export const FETCH_SINGLE_COMMENT = "FETCH_SINGLE_COMMENT";
 
 export function fetchSingleComment(commentID) {
     const url = BLOG_REQUEST_URL + 'comments/' + commentID;
@@ -87,8 +75,8 @@ export function fetchBlogPosts(callback) {
 export function createNewPost(values, callback) {
     const post_url = BLOG_REQUEST_URL + 'posts';
     const request = axios.post(post_url, values)
-        .then(() => {
-            callback()
+        .then((payload) => {
+            callback(payload)
         });
 
     return {

@@ -47,7 +47,7 @@ class PostSingle extends Component {
                     <p> #{post.category}</p>
                 </div>
                 <div className="col-sm-12 border-top">
-                    <div className="col-sm-8 mb-4 mt-3"><h4>Comments</h4></div>
+                    <div className="col-sm-8 mb-4 mt-3"><h4>Comments ({post.commentCount})</h4></div>
                     <CommentList postID={post.id}/>
                 </div>
                 <div className="col-sm-12 border-top">

@@ -20,6 +20,10 @@ class BlogList extends Component {
         this.getBlogPost();   
     }
 
+    componentWillReceiveProps() {
+        this.getBlogPost();
+    }
+
     getBlogPost() {
         this.props.fetchBlogPosts((payload) => {
             this.setState({ curPosts: payload.data });

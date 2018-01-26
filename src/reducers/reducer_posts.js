@@ -1,4 +1,4 @@
-import { FETCH_BLOG_POSTS, FETCH_SINGLE_POST, UPDATE_POST_VOTE, DELETE_SINGLE_POST, EDIT_SINGLE_POST} from '../actions/index';
+import { FETCH_BLOG_POSTS, FETCH_SINGLE_POST, UPDATE_POST_VOTE, DELETE_SINGLE_POST, EDIT_SINGLE_POST} from '../actions/actionTypes';
 import _ from 'lodash';
 
 export default function(state = {}, action) {

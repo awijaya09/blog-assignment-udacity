@@ -24,9 +24,11 @@ class PostComment extends Component {
         values['timestamp'] = Date.now();
         values['id'] = Date.now();
         values['parentId'] = postID;
+        console.log(postID);
 
         // Redirect to homepage once the post has been sent.
         this.props.createNewComment(values, (payload) => {
+            console.log(payload);
             this.props.fetchComments(postID);
             return payload
         });

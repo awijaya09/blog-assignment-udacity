@@ -1,4 +1,4 @@
-import { FETCH_POST_COMMENTS, DELETE_SINGLE_COMMENT, UPDATE_COMMENT_VOTE, EDIT_SINGLE_COMMENT, FETCH_SINGLE_COMMENT} from '../actions/index';
+import { FETCH_POST_COMMENTS, DELETE_SINGLE_COMMENT, UPDATE_COMMENT_VOTE, EDIT_SINGLE_COMMENT, FETCH_SINGLE_COMMENT} from '../actions/actionTypes';
 import _ from 'lodash';
 
 export default function(state = {}, action) {

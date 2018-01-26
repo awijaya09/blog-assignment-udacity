@@ -23,8 +23,9 @@ class PostNew extends Component {
         values['id'] = Date.now();
 
         // Redirect to homepage once the post has been sent.
-        this.props.createNewPost(values, () => {
+        this.props.createNewPost(values, (payload) => {
             this.props.history.push('/')
+            return payload
         });
     }
 

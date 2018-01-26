@@ -12,17 +12,18 @@ class CommentList extends Component {
     }
     render() {
         const { comments } = this.props;
+        console.log(this.props.postID);
         if (!comments) {
             console.log("no comments");
             return (
                 <div>There are no comments yet</div>
             )
         }
-
         return (
             <div className="row">
                 {_.map(_.orderBy(comments, ['timestamp'], ['desc']), commentData => {
                     if(!commentData.deleted){
+                        
                         return <CommentItem key={commentData.id} commentData={commentData}/>
                     }
                 })}
