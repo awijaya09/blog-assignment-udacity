@@ -20,10 +20,6 @@ class BlogList extends Component {
         this.getBlogPost();   
     }
 
-    componentWillReceiveProps() {
-        this.getBlogPost();
-    }
-
     getBlogPost() {
         this.props.fetchBlogPosts((payload) => {
             this.setState({ curPosts: payload.data });
@@ -37,14 +33,15 @@ class BlogList extends Component {
                 <BlogItem post={postData} key={postData.id} onVoteUpdate={this.getBlogPost}/>
             ); 
         } else {
-            return null;    
+        return (<div> Sorry the post is not available!</div>);    
         }
     }
 
     updateOrder(e, orderBy, orderMode) {
         e.preventDefault();
-        const posts = this.state.curPosts;
-        const orderedPost = _.orderBy(posts, [orderBy], [orderMode]);
+        const { curPosts } = this.state;
+        const orderedPost = _.orderBy(curPosts, [orderBy], [orderMode]);
+        console.log("order changed");
         this.setState({
             curPosts: orderedPost,
         });

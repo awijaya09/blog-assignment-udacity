@@ -11,7 +11,6 @@ import BlogList from './containers/blog-list';
 import PostNew from './components/PostNew';
 import PostSingle from './containers/PostSingle';
 import PostEdit from './containers/PostEdit';
-import CommentEidt from './containers/CommentEdit';
 
 import './styles/style.css';
 import registerServiceWorker from './registerServiceWorker';
