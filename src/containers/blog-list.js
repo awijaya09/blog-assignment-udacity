@@ -30,7 +30,7 @@ class BlogList extends Component {
     checkPostDeleted(postData) {
         if(!postData.deleted) {
             return (
-                <BlogItem post={postData} key={postData.id} onVoteUpdate={this.getBlogPost}/>
+                <BlogItem post={postData} key={postData.id} onVoteUpdate={this.getBlogPost} onDeletePost={this.getBlogPost}/>
             ); 
         } else {
         return (<div> Sorry the post is not available!</div>);    
@@ -52,6 +52,11 @@ class BlogList extends Component {
         if (!curPosts) {
             return (
                 <div>Getting data...</div>
+            )
+        }
+        if (curPosts.length < 1) {
+            return (
+                <div>Sorry there are no post yet...</div>
             )
         }
         // Default sorting from newest to oldest 

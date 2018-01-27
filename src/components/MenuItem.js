@@ -6,19 +6,19 @@ class MenuItem extends Component {
         super(props);
         this.toggleActive = this.toggleActive.bind(this);
         this.state = {
-            active : false
+            active : 0
         };
     }
 
-    toggleActive() {
-        const currentState = this.state.active
+    toggleActive(e, index) {
+        e.preventDefault();
         this.setState( {
-            active: !currentState
+            active: index
         });
     }
     render() {
         return (
-            <Link className={this.state.active ? 'nav-link active': 'nav-link'} onClick={this.toggleActive} to={this.props.path}>{this.props.title}</Link>
+            <Link className='nav-link' to={this.props.path}>{this.props.title}</Link>
         )
     }
 }

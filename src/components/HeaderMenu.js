@@ -9,8 +9,11 @@ class HeaderMenu extends Component {
                 <div className="blog-masthead">
                     <div className="container">
                         <nav className="nav">
-                            <MenuItem path="/" title="Home" />
-                            <MenuItem path="/posts/new" title="Create New Post" />
+                            <MenuItem path="/" title="Home" index={0}/>
+                            <MenuItem path="/posts/new" title="Create New Post" index={1} />
+                            <MenuItem path="/react" title="React Blog" index={2}/>
+                            <MenuItem path="/redux" title="Redux Blog" index={3}/>
+                            <MenuItem path="/udacity" title="Udacity Blog" index={4}/>
                         </nav>
                     </div>
                 </div>

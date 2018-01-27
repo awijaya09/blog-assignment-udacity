@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateVote } from '../actions';
+import { updateVote, deletePost } from '../actions';
 import Timestamp from 'react-timestamp';
 
 class BlogItem extends Component {
 
+    constructor(props) {
+        super(props);
+        this.removePost = this.removePost.bind(this);
+    }
+
     handleVote(e, val){
         e.preventDefault();
         this.props.updateVote(this.props.post.id, 'posts/', val, (payload) => {
-            console.log(payload);
             this.props.onVoteUpdate();
+            return payload
+        });
+    }
+    removePost(){
+        this.props.deletePost(this.props.post.id, (payload) => {
+            this.props.onDeletePost();
             return payload
         });
     }
@@ -45,6 +55,9 @@ class BlogItem extends Component {
                             </p>
                             <p className="card-text"> { postData.body } </p>
                             <Link to={`/${postData.category}`}><p> #{postData.category}</p></Link>
+
+                            <button className="btn btn-outline-danger float-right" onClick={this.removePost}>Delete</button>
+                            <Link className="btn btn-outline-info mr-3 float-right" to={`/${postData.category}/${postData.id}/edit`}>Edit</Link>
                         </div>
                     </div>
                 </div>
@@ -58,4 +71,4 @@ class BlogItem extends Component {
     }
 }
 
-export default connect(null, { updateVote })(BlogItem);
+export default connect(null, { updateVote, deletePost })(BlogItem);
