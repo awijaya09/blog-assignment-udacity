@@ -7,17 +7,19 @@ import CommentList from './CommentList';
 import PostComment from '../components/PostComment';
 
 class PostSingle extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.removePost = this.removePost.bind(this);
     }
 
     componentDidMount() {
-        const { id } = this.props.match.params;
+        const {
+            id
+        } = this.props.match.params;
         this.props.getPost(id);
     }
 
-    removePost(){
+    removePost() {
         this.props.deletePost(this.props.post.id, (payload) => {
             this.props.history.push('/')
             return payload
@@ -58,9 +60,15 @@ class PostSingle extends Component {
         )
     }
 }
-
-function mapStateToProps({ posts }, ownProps) {
-    return { post: posts[ownProps.match.params.id] };
+function mapStateToProps({
+    posts
+}, ownProps) {
+    return {
+        post: posts[ownProps.match.params.id]
+    };
 }
 
-export default connect(mapStateToProps, { getPost, deletePost })(PostSingle);
+export default connect(mapStateToProps, {
+    getPost,
+    deletePost
+})(PostSingle);
