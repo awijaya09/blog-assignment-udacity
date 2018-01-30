@@ -29,6 +29,7 @@ class PostComment extends Component {
         // Redirect to homepage once the post has been sent.
         this.props.createNewComment(values, (payload) => {
             this.props.fetchComments(postID);
+            this.props.onUpdateComment();
             return payload
         });
     }

@@ -25,7 +25,6 @@ class PostSingle extends Component {
             return payload
         });
     }
-
     render() {
         const { post } = this.props;
         if (!post) {
@@ -54,7 +53,7 @@ class PostSingle extends Component {
                 </div>
                 <div className="col-sm-12 border-top">
                     <div className="col-sm-8 mb-4 mt-3"><h4>Add new comment</h4></div>
-                    <PostComment postID={post.id} />
+                    <PostComment postID={post.id} onUpdateComment={this.updateCommentCount}/>
                 </div>
             </div>
         )
