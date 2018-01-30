@@ -3,6 +3,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import { createNewComment, fetchComments } from '../actions/index';
 import FormField from './FormField';
+var randomstring = require('randomstring');
 
 class PostComment extends Component {
     
@@ -22,7 +23,7 @@ class PostComment extends Component {
         const { postID } = this.props;
 
         values['timestamp'] = Date.now();
-        values['id'] = Date.now();
+        values['id'] = randomstring.generate(8);
         values['parentId'] = postID;
 
         // Redirect to homepage once the post has been sent.

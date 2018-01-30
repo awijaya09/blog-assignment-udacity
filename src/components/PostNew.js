@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createNewPost } from '../actions/index';
+import randomstring from 'randomstring';
 import FormField from './FormField';
 
 class PostNew extends Component {
@@ -20,7 +21,7 @@ class PostNew extends Component {
 
     onSubmit(values) {
         values['timestamp'] = Date.now();
-        values['id'] = Date.now();
+        values['id'] = randomstring.generate(7);
 
         // Redirect to homepage once the post has been sent.
         this.props.createNewPost(values, (payload) => {
